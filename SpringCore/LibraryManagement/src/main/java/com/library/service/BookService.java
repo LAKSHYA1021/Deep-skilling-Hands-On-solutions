@@ -1,11 +1,17 @@
 package com.library.service;
 
 import com.library.repository.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BookService {
-    private BookRepository bookRepository;
 
-    public void setBookRepository(BookRepository bookRepository) {
+    private final BookRepository bookRepository;
+
+    // Constructor-based injection (recommended)
+    @Autowired
+    public BookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
