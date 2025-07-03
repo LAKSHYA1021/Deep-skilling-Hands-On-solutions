@@ -1,15 +1,17 @@
 package com.library;
 
+import com.library.config.AppConfig;
 import com.library.service.BookService;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class MainApp {
     public static void main(String[] args) {
-        
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        // Load Spring context using Java config
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
-        BookService bookService = (BookService) context.getBean("bookService");
+        // Get and use the service
+        BookService bookService = context.getBean(BookService.class);
         bookService.displayBooks();
     }
 }
